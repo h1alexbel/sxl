@@ -1,0 +1,7 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+
+[files]
+extend-exclude = [
+
+]
