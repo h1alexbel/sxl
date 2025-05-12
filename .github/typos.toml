@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
 # SPDX-License-Identifier: MIT
 
-[files]
-extend-exclude = [
-  "SXL"
+[default]
+extend-ignore-identifiers-re = [
+  "SXL", # language name
 ]
