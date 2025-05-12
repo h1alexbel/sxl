@@ -6,7 +6,7 @@ architect:
 docker:
   image: h1alexbel/rultor-rust-image:0.0.4
 assets:
-  credentials: h1alexbel/home#assets/crates-credentials
+  credentials: h1alexbel/home#assets/crates.toml
 install: |
   pdd --file=/dev/null
 merge:
