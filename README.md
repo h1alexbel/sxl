@@ -32,7 +32,7 @@ template -> "book"
     @author
 ```
 
-You should have this XML in result:
+You should have this XML in the result:
 
 ```xml
 <shelf>
