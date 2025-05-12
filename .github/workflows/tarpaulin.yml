@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+name: tarpaulin
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  check:
+    timeout-minutes: 15
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1.0.7
+        with:
+          toolchain: stable
+          override: true
+      - name: Install and build tarpaulin with OpenSSL 3
+        run: |
+          cargo install cargo-tarpaulin --version 0.26.0 --force
+      - name: Run tarpaulin
+        run: |
+          cargo tarpaulin --out Xml --all-features --exclude-files src/lib.rs -- --test-threads 1
+      - uses: codecov/codecov-action@v5
+        if: github.repository == 'objectionary/sodg'
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: true

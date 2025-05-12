@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+
+[package]
+name = "sxl"
+version = "0.0.0"
+edition = "2024"
+
+[dependencies]

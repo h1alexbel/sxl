@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+architect:
+  - h1alexbel
+docker:
+  image: h1alexbel/rultor-rust-image:0.0.4
+assets:
+  credentials: h1alexbel/home#assets/crates-credentials
+install: |
+  pdd --file=/dev/null
+merge:
+  script: |
+    cargo --color=never test -vv
+    cargo --color=never fmt --check
+    cargo doc --no-deps
+    cargo clippy
+release:
+  script: |-
+    [ "${tag}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || exit -1
+    sed -i -e "s/^version = \"0.0.0\"/version = \"${tag}\"/" Cargo.toml
+    sed -i -e "s/0.0.0/${tag}/" src/lib.rs
+    cargo --color=never test --all-features -vv -- --nocapture
+    cargo --color=never test --all-features --release -vv -- --nocapture
+    cargo --color=never fmt --check
+    cargo --color=never clippy -- --no-deps
+    git commit -am "${tag}"
+    mkdir -p ~/.cargo && cp ../credentials ~/.cargo
+    cargo --color=never publish

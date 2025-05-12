@@ -1,0 +1,31 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+name: cargo
+'on':
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+env:
+  RUSTFLAGS: "-Dwarnings"
+jobs:
+  build:
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+          os: [ubuntu-24.04, windows-2022, macos-14]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1.0.7
+        with:
+          toolchain: stable
+      - run: |
+          cargo test
+          cargo fmt --check
+          cargo doc --no-deps
+          cargo clippy --all-targets
