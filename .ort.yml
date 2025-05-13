@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+excludes:
+  scopes:
+    - pattern: "provided"
+      reason: "TEST_DEPENDENCY_OF"
+      comment: "Packages provided"
+    - pattern: "test"
+      reason: "TEST_DEPENDENCY_OF"
+      comment: "Packages for testing only"
