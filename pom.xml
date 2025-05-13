@@ -64,6 +64,17 @@
   </distributionManagement>
   <dependencies>
     <dependency>
+      <!-- to make sure it stays in the "compile" scope no matter what profile is used -->
+      <groupId>org.antlr</groupId>
+      <artifactId>antlr4-runtime</artifactId>
+      <!-- version from parent POM -->
+    </dependency>
+    <dependency>
+      <groupId>com.jcabi.incubator</groupId>
+      <artifactId>xembly</artifactId>
+      <version>0.32.2</version>
+    </dependency>
+    <dependency>
       <groupId>com.jcabi</groupId>
       <artifactId>jcabi-xml</artifactId>
       <version>0.35.0</version>
