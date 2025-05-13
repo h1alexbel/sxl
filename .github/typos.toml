@@ -4,5 +4,6 @@
 [default]
 extend-ignore-identifiers-re = [
   "SXL", # language name,
-  "Sxl", # language name
+  "Sxl", # language name,
+  "sxl", # language name,
 ]
