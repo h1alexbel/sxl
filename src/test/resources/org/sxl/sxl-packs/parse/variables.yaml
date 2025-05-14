@@ -10,7 +10,7 @@ asserts:
   - //var[@name='rho' and @select='$.^.']
 input: |
   match "/"
-    rho = '$.^.'
+    '$.^.' as rho
     defects
       each "//o"
         if contains(@base, $rho)
