@@ -7,7 +7,7 @@ asserts:
   - //f[@node='defect']
   - //each[@select='//o']
   - //if[@test='contains(@name, $rho)']
-  - //var[@name='rho' and @select='$.^.']
+  - //moniker[@name='rho' and @select='$.^.']
 input: |
   match "/"
     '$.^.' as rho
