@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+asserts:
+  - /stylesheet/entry[@xpath='/']
+  - //f[@node='foo']
+  - //f[@node='f']
+  - //attr[@name='severity' and @value='xyz']
+  - //attr[@name='line' and @value='1']
+  - //text[text()='\"boom!\"']
+input: |
+  match "/"
+    foo
+      each "//a[@name='x!']"
+        f
+          @severity='xyz'
+          @line='1'
+          "boom!"

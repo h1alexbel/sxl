@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+asserts:
+  - /stylesheet/entry[@xpath='/']
+  - //f[@node='defects']
+  - //f[@node='defect']
+  - //fn[@name='echo' ns='eo']
+  - //value[text()='\"hello!\"']
+  - /stylesheet/namespaces[count(ns)=2]
+  - //ns[@name='xs' and @url='http://www.w3.org/2001/XMLSchema']
+  - //ns[@name='eo' and @url='https://www.eolang.org']
+input: |
+  ns "xs" "http://www.w3.org/2001/XMLSchema"
+  ns "eo" "https://www.eolang.org"
+
+  match "/"
+    defects
+      each "//o"
+        defect
+          if @base = 'x'
+            eo:echo("hello!")

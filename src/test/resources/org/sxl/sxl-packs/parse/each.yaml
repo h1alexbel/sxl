@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+asserts:
+  - /stylesheet/entry[@xpath='/']
+  - //f[@node='defects']
+  - //f[@node='defect']
+  - //each[@select='//o']
+  - //value[text()='@name']
+  - //value[text()='\" is good object\"']
+input: |
+  match "/"
+    defects
+      each "//o"
+        defect
+          @name
+          " is good object"

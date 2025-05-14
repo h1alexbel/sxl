@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+asserts:
+  - /stylesheet/entry[@xpath='/']
+  - //f[@node='greetings']
+  - //f[@node='g']
+  - //ns[@name='foo' and @url='https://www.foo.org']
+  - //fn[@name='echo' ns='foo']/param[@name='txt']/return[@call='concat(\"hello, \", $txt)']
+input: |
+  ns "foo" "https://www.foo.org"
+
+  function "echo"(txt)
+    -> concat('hello, ', $txt)
+
+  match "/"
+    greetings
+      each "//person"
+        g
+          foo:echo(@name)
