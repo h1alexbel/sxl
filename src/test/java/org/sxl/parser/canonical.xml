@@ -1,0 +1,16 @@
+<stylesheet>
+  <entry xpath="/books">
+    <application template="book" node="shelf"/>
+  </entry>
+  <templates>
+    <template name="book">
+      <f node="entry">
+        <if test="@author = 'Steve McConnell'">
+          <value>text()</value>
+          <value>" by "</value>
+          <value>@author</value>
+        </if>
+      </f>
+    </template>
+  </templates>
+</stylesheet>

@@ -1,0 +1,10 @@
+match "/books"
+  <shelf>
+    apply "book":with-author
+
+template "book":with-author
+  <entry>
+    if @author = 'Steve McConnell'
+      text()
+      " by "
+      @author

@@ -4,11 +4,12 @@
  */
 package org.sxl.parser;
 
-import com.jcabi.matchers.XhtmlMatchers;
-import java.io.IOException;
-import org.cactoos.io.InputOf;
+import org.eolang.jucs.ClasspathSource;
+import org.eolang.xax.XtSticky;
+import org.eolang.xax.XtYaml;
+import org.eolang.xax.XtoryMatcher;
 import org.hamcrest.MatcherAssert;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 /**
  * Tests for {@link SxlSyntax}.
@@ -17,23 +18,18 @@ import org.junit.jupiter.api.Test;
  */
 final class SxlSyntaxTest {
 
-    @Test
-    void parsesCanonicalExample() throws IOException {
+    @ParameterizedTest
+    @ClasspathSource(value = "org/sxl/sxl-packs/parse", glob = "**.yaml")
+    void parsesSyntax(final String yaml) {
         MatcherAssert.assertThat(
-            "Parsed IR does not contains expected XPaths",
-            new SxlSyntax(
-                new InputOf(
-                    String.join(
-                        "\n",
-                        "match \"/books\"",
-                        "  <shelf>",
-                        "    apply book"
-                    )
+            "Story failures are not empty, but they should",
+            new XtSticky(
+                new XtYaml(
+                    yaml,
+                    sxl -> new SxlSyntax(sxl).parsed()
                 )
-            ).parse(),
-            XhtmlMatchers.hasXPaths(
-                "/stylesheet/entry[1][contains(@xpath, '/books')]"
-            )
+            ),
+            new XtoryMatcher()
         );
     }
 }

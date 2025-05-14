@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.cactoos.Input;
 import org.cactoos.Text;
+import org.cactoos.io.InputOf;
 import org.cactoos.list.ListOf;
 import org.cactoos.text.FormattedText;
 import org.cactoos.text.Joined;
@@ -23,6 +24,7 @@ import org.xembly.Xembler;
 
 /**
  * SXL syntax.
+ *
  * @since 0.0.0
  */
 public final class SxlSyntax {
@@ -34,13 +36,21 @@ public final class SxlSyntax {
 
     /**
      * Ctor.
+     * @param sxl SXL input as string
+     */
+    public SxlSyntax(final String sxl) {
+        this(new InputOf(sxl));
+    }
+
+    /**
+     * Ctor.
      * @param ipt Input
      */
     public SxlSyntax(final Input ipt) {
         this.input = ipt;
     }
 
-    final XML parse() throws IOException {
+    XML parsed() throws IOException {
         final SxlParser parser = new SxlParser(
             new CommonTokenStream(new SxlIndentLexer(this.normalize()))
         );
@@ -69,6 +79,7 @@ public final class SxlSyntax {
 
     /**
      * Split input into lines.
+     *
      * @return Lines without line breaks.
      */
     private List<Text> lines() {

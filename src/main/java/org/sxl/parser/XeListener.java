@@ -15,6 +15,7 @@ import org.xembly.Directives;
 
 /**
  * SXL Xembly AST listener.
+ *
  * @since 0.0.0
  */
 final class XeListener implements SxlListener, Iterable<Directive> {
@@ -67,12 +68,12 @@ final class XeListener implements SxlListener, Iterable<Directive> {
 
     @Override
     public void enterTemplate(final SxlParser.TemplateContext ctx) {
-        throw new UnsupportedOperationException("#enterTemplate()");
+        this.dirs.add("template").attr("name", ctx.tid().getText());
     }
 
     @Override
     public void exitTemplate(final SxlParser.TemplateContext ctx) {
-        throw new UnsupportedOperationException("#exitTemplate()");
+        this.dirs.up();
     }
 
     @Override
@@ -133,7 +134,7 @@ final class XeListener implements SxlListener, Iterable<Directive> {
 
     @Override
     public void visitErrorNode(final ErrorNode errorNode) {
-        throw new UnsupportedOperationException("#visitErrorNode()");
+        // This method is created by ANTLR and can't be removed
     }
 
     @Override
