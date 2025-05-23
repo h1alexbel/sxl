@@ -1,0 +1,9 @@
+match -> "/books"
+  shelf
+    apply-templates -> "book"
+
+template -> "book"
+  entry
+    text()
+    " by "
+    @author
