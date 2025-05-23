@@ -6,6 +6,7 @@ package org.sxl;
 
 import com.jcabi.xml.XSLDocument;
 import org.cactoos.io.ResourceOf;
+import org.cactoos.text.TextOf;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Disabled;
@@ -26,18 +27,11 @@ final class SxlTest {
         MatcherAssert.assertThat(
             "The output XSL does not match with expected",
             new Sxl().toXsl(
-                String.join(
-                    "\n",
-                    "match -> \"/books\"",
-                    "  shelf",
-                    "    apply -> \"book\"",
-                    "",
-                    "template -> \"book\"",
-                    "  entry",
-                    "    text()",
-                    "    \" by \"",
-                    "    @author"
-                )
+                new TextOf(
+                    new ResourceOf(
+                        "org/sxl/canonical.sxl"
+                    )
+                ).toString()
             ),
             Matchers.equalTo(
                 new XSLDocument(
