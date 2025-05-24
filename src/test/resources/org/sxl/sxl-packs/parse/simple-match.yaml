@@ -1,0 +1,9 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+asserts:
+  - /stylesheet/entry[1][contains(@xpath, '/books')]
+input: |
+  match "/books"
+    shelf
+      apply book

@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+asserts:
+  - /stylesheet/entry[@xpath='/foo']
+  - //template[@name='bar' and @mode='with-fuzz']
+  - //f[@node='x']
+  - //f[@node='i']
+input: |
+  match "/foo"
+    x
+      apply bar:with-fuzz
+
+  template bar:with-fuzz
+      i
+        text()
+        " by "
+        @xyz

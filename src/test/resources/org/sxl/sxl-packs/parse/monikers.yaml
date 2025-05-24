@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+asserts:
+  - /stylesheet/entry[@xpath='/']
+  - //f[@node='defects']
+  - //f[@node='defect']
+  - //each[@select='//o']
+  - //if[@test='contains(@name, $rho)']
+  - //moniker[@name='rho' and @select='$.^.']
+input: |
+  match "/"
+    '$.^.' as rho
+    defects
+      each "//o"
+        if contains(@base, $rho)
+          defect
+            @name
+            " accessed via rho reference"

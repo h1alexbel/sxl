@@ -1,0 +1,10 @@
+match "/books"
+  <shelf>
+    apply "book":with-author
+
+# Book.
+template "book":with-author
+  <entry>
+    text()
+    " by "
+    @author

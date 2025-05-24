@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+asserts:
+  - /stylesheet/entry[@xpath='/root']
+  - //template[@name='x']
+  - //f[@node='app']
+  - //f[@node='bar']
+  - //if[@test='@bar=\'bAr\'']
+  - //value[text()='\"matches bAr\"']
+input: |
+  match "/root"
+    app
+      apply x
+
+  template x
+      if @bar = 'bAr'
+        bar
+        "matches bAr"

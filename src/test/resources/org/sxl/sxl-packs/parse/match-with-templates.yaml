@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: Copyright (c) 2025 Aliaksei Bialiauski
+# SPDX-License-Identifier: MIT
+---
+asserts:
+  - /stylesheet/entry[@xpath='/books']
+  - //template[@name='book']
+  - //f[@node='entry']
+  - //value[text()='text()']
+  - //value[text()='\" by \"']
+  - //value[text()='@author']
+input: |
+  match "/books"
+    shelf
+      apply book
+
+  template book
+      entry
+        text()
+        " by "
+        @author
